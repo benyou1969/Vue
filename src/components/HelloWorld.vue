@@ -1,9 +1,17 @@
 <template>
-  <div class="hello">
-    <input type="text" v-model="msg" class="ipt-green">
-    <div class="msg-show">{{ msg.toUpperCase() }}</div>
-    <br>
-    {{ greet('Morning') }}
+  <div class="hello"> 
+  <h2>DATA BINDING</h2>
+  <p>first of all, what is binding? or bind something? it's strong covering sometime is a metal to hold the pages of the book together.</p>
+  why VUE doesn't update this? Like it did with others properties <br>
+    <!-- <a href="{{ msg }}" target="__blank" class="hrefSite">Benyou</a> -->
+  The reason is, All HTML Attributes like href, value, class...they all expect a  string value <br>
+
+  How to do it or solve it? <br>
+
+  It's very easy, when we see attribute try to bind it with data, like we are saying: Vue when u see attribute has binded with data properties change Msg and display the msg or link from vue instance <br>
+    <a :href="msg" target="__blank" :class="classes">Benyou</a>
+    <!-- <a v-bind:href="msg" target="__blank" v-bind:class="classes">Benyou</a> -->
+    <input type="text" :value="value_input">
   </div>
 </template>
 
@@ -12,29 +20,17 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg:'',
+      msg:'http://www.benyou.me/',
+      classes: 'hrefSite',
+      value_input: 'Search...'
     }
   },
-  methods: {
-    greet(title){
-      // return `Hello and good ${title}, ${this.msg.toUpperCase()}`
-            return `Hello and good ${title}, ${this.msg}`
-
-    }
-  }
 }
 </script>
 
 <style scoped>
-.ipt-green{
-  border-color: green;
-  outline: none;
-  border-radius: 4px;
-  height: 30px;
-  widows: 150px;
+.hrefSite{
+  color:aquamarine;
+  font: 1em sans-serif;
 }
-/* for capitalize or uppercase it's better if you choose to do it with css instead of JS */
-/* .msg-show{
- text-transform: capitalize;
-} */
 </style>
