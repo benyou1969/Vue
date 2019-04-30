@@ -1,9 +1,18 @@
 <template>
-  <div class="hello"> 
-    <input type="text" @blur="updateName">
-    <div class="divGrey" @mouseup="sendAlert(e)">
-            {{ name }}
-    </div>
+  <div class="hello">
+    <div>
+      <input type="text" @keyup="updateName">
+       Type your name to show it: <b>{{ name }}</b>
+    </div> 
+    <div>
+      <input type="text" @keypress="updateName">
+       Type your name and Keypress to show it: <b>{{ name }}</b>
+    </div> 
+    <div>
+      <input type="text" @keyup.enter="updateName">
+       Keyup and Press enter to show the name: <b>{{ name }}</b>
+    </div> 
+    
   </div>
 </template>
 
@@ -18,21 +27,11 @@ export default {
   methods: {
     updateName(e) {
       return this.name = e.target.value
-    },
-    sendAlert(e){
-        console.log(e)
-        console.log(e.srcElement.baseURI)
-        alert("mouse moved up" )
-     }
+    }
   },
 }
 </script>
 
 <style scoped>
-.divGrey{
-width: 300px;
-height: 100px;
-color: white;
-background: grey;
-}
+
 </style>
