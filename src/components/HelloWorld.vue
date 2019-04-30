@@ -1,11 +1,9 @@
 <template>
   <div class="hello"> 
-    <p>My name is <b>{{ name.toUpperCase()}}, I earn ${{ wage }} per hour</b></p>
-    <button @click="wage++">Increase wage by $1</button>
-    <button @click="wage--">Decrease wage by $1</button>
-    <button @dblclick="wage++">Increase wage by $1(dbl)</button>
-    <button @dblclick="wage--">Decrease wage by $1(dbl)</button>
-    <button @click="changeWage(5)">Increase wage by $5</button>
+    <div class="divGrey" @mousemove="logEvent">
+      <b>X: {{ coords.offsetX }}</b>,
+      <b>Y: {{ coords.offsetY }}</b>
+    </div>
   </div>
 </template>
 
@@ -14,18 +12,42 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-     name: 'benyou',
-     wage: 15,
+      coords:{
+      offsetX: 0,
+      offsetY: 0,
+      }
     }
   },
   methods: {
-    changeWage(amount) {
-        this.wage += amount    
-    }
+    logEvent(e){
+       this.coords.offsetX = e.offsetX
+       this.coords.offsetY = e.offsetY
+     }
   },
 }
 </script>
 
 <style scoped>
 
+@media (min-width: 1000px) 
+{
+  .divGrey{
+  width: 500px;
+  height: 150px;
+  border: 1px solid #41b883;
+  background-color: grey;
+  border-radius: 5px;
+  margin-left: 30%;
+  }
+}
+@media only screen and (max-width: 600px)
+{
+.divGrey{
+  width: 500px;
+  height: 150px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-left: 7%;
+}
+}
 </style>
