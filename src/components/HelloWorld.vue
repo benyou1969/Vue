@@ -20,15 +20,6 @@ export default {
   },
   methods: {
     toggleClick(){
-      // const short = this.shortName
-      // if(short== true) {
-
-      // if(this.shortName == true) {
-      //   this.shortName = false
-      // }else{
-      //   this.shortName = true
-      // }
-  
       this.shortName = !this.shortName
     },
     toggleAge() {
