@@ -1,12 +1,10 @@
 <template>
   <div class="hello">
-   <p>Vue cli stand for: Command Line Interface</p>
-   It's good to use vue to control parts of websites
-   A better workflow with WebPack
-   use ES6 that are not already supported 
-   compile and mninify code into one file
-   use single-file vue templates
-   use a live reload development server
+  in CDN:(content delivery network) it was a a data property which was an object
+  a data() in cli:(Command Line Interface) becomes a function 
+  Why it becomes an function?, well, basicly it's here to protect our data 
+  imagin we create a component which it might used in many pages and renders a comments or share button...  so we try to insurence the instance has her own data which it might be diffrent from the others.
+    <h2>{{ title }}</h2>
   </div>
 </template>
 
@@ -15,7 +13,7 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-    
+     title: 'Testing is there anybody there!!'
     };
   },
   methods: {
@@ -25,4 +23,8 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  font-size: 1.3rem;
+  text-align: center;
+}
 </style>
