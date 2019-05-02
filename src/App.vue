@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <AllFriends :friends="friends"/>
+    <AllFriends :friends="friends" @delete="deleteFriend"/>
     <!--  props in nested component -->
     <OnlineFriends :friends="friends"/>
   </div>
@@ -27,6 +27,13 @@ export default {
         { name: "John", online: false }
       ]
     };
+  },
+  methods: {
+    deleteFriend(payload) {
+      this.friends = this.friends.filter(friend => {
+        return friend.name !== payload.name
+      })
+    }
   }
 };
 </script>
