@@ -1,32 +1,39 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <Navbar />
-    <nav>
-            <ul>
-                  <li>Home</li>
-                  <li>About</li>
-                  <li>Contact</li>
-            </ul>
-      </nav>
-    <HelloWorld/>
+    <AllFriends :friends="friends"/>
+    <!--  props in nested component -->
+    <OnlineFriends :friends="friends"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-import Navbar from '@/components/Navbar'
+import AllFriends from "./components/AllFriends";
+import OnlineFriends from "./components/OnlineFriends";
+
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld, Navbar
+    AllFriends,
+    OnlineFriends
+  },
+  data() {
+    return {
+      friends: [
+        { name: "mario", online: true },
+        { name: "jeffrey", online: false },
+        { name: "Mark", online: false },
+        { name: "Deo", online: true },
+        { name: "John", online: false }
+      ]
+    };
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
