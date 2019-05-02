@@ -2,6 +2,13 @@
   <div id="app">
     <img src="./assets/logo.png">
     <Navbar />
+    <nav>
+            <ul>
+                  <li>Home</li>
+                  <li>About</li>
+                  <li>Contact</li>
+            </ul>
+      </nav>
     <HelloWorld/>
   </div>
 </template>
