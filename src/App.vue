@@ -1,39 +1,31 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <AllFriends :friends="friends" @delete="deleteFriend"/>
-    <!--  props in nested component -->
-    <OnlineFriends :friends="friends"/>
+    <Likes :items="items"/>
+    <DisLikes :items="items"/>
   </div>
 </template>
 
 <script>
-import AllFriends from "./components/AllFriends";
-import OnlineFriends from "./components/OnlineFriends";
+import Likes from "./components/Likes";
+import DisLikes from "./components/DisLikes";
 
 export default {
   name: "App",
   components: {
-    AllFriends,
-    OnlineFriends
+    Likes,
+    DisLikes
   },
   data() {
     return {
-      friends: [
-        { name: "mario", online: true },
-        { name: "jeffrey", online: false },
-        { name: "Mark", online: false },
-        { name: "Deo", online: true },
-        { name: "John", online: false }
+     items: [
+        { name: "benyou", time: "2min ago", type: 0 },
+        { name: "jhon", time: "13min ago", type: 1 },
+        { name: "minho", time: "1h ago", type: 0 },
+        { name: "jack", time: "5min ago", type: 0 },
+        { name: "evan", time: "2d ago", type: 1 }
       ]
-    };
-  },
-  methods: {
-    deleteFriend(payload) {
-      this.friends = this.friends.filter(friend => {
-        return friend.name !== payload.name
-      })
-    }
+     }
   }
 };
 </script>
