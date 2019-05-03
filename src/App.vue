@@ -1,32 +1,17 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <Likes :items="items"/>
-    <DisLikes :items="items"/>
+    <Blog />
   </div>
 </template>
 
 <script>
-import Likes from "./components/Likes";
-import DisLikes from "./components/DisLikes";
-
+import Blog from './components/Blog'
 export default {
   name: "App",
   components: {
-    Likes,
-    DisLikes
+    Blog
   },
-  data() {
-    return {
-     items: [
-        { name: "benyou", time: "2min ago", type: 0 },
-        { name: "jhon", time: "13min ago", type: 1 },
-        { name: "minho", time: "1h ago", type: 0 },
-        { name: "jack", time: "5min ago", type: 0 },
-        { name: "evan", time: "2d ago", type: 1 }
-      ]
-     }
-  }
 };
 </script>
 
