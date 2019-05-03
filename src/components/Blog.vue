@@ -1,30 +1,36 @@
 <template>
   <div>
-    <p>{{ word }}</p>
+    <input type="text" v-model="searchTerm">
     <ul> 
-          <li v-for="(item,index) in items" :key="index" @click="reverseArr">{{ item }}</li>
+          <li v-for="item in filteredPost" :key="item.id">{{ item.title }}</li>
     </ul>
   </div>
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
       name: 'blog',
       data(){
             return{
-                  word: 'food',
-                  items: [
-                        23,32,54,76,87
-                  ]
+                  searchTerm: '',
+                  items: []
             }
       },
-      filters: {
-            
+      created(){
+            axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then(response => {
+                  this.items = response.data
+            })
+            .catch(err => {
+                  console.log(err)
+            })
       },
-      methods: {
-            reverseArr() {
-                   return this.items = this.items.reverse();
+      computed: {
+            filteredPost() {
+                  return this.items.filter(parameter => {
+                        return parameter.title.match(this.searchTerm)
+                  })
             }
       },
 }
