@@ -1,38 +1,33 @@
 <template>
       <div>
-            <p @click="changeMsg">{{ msg }}</p>,
-             {{ num }}
-            <div>
-                  <button @click="num++">+</button>
-            </div>
+           <ul>
+                 <li v-for="item in items" :key="item.id"> {{ item.title | snippet }}</li>
+           </ul>
       </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
       name: 'blog',
       data(){
             return{
-                  msg: 'Hello',
-                  num: 0,
+                  items: []
             }
       },
       methods: {
-            changeMsg(){
-                  this.msg = "Msg has been changed"
-            }
+           
       },
-      beforeCreate(){
-            alert('Hi this component is creating');
-      },
-      created(){
-            alert('Hi this component has created');  
-      },
-      beforeUpdate(){
-                 alert('Hi this component is trying to update');   
-      },
-      updated(){
-                 alert('Hi this component has been updated');   
-      }
+     created(){
+           axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then(response => {
+                 console.log(response.data)
+                 this.items = response.data
+           })
+           .catch(error => {
+                 console.log(error)
+           })
+     }
 }
 </script>
