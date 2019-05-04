@@ -2,17 +2,15 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import router from './router'
 
-Vue.filter('backwards', value => {
- if ( !value) return ''
-  return value.charAt(0).toUpperCase() + value.slice(1)
-});
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  router,
   components: { App },
   template: '<App/>'
 })
