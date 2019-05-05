@@ -10,13 +10,13 @@ export default {
       name: 'Profile',
       data(){
             return {
-                  userId: this.$route.params.user_id
+                  userId: this.$route.params.user_id,
             }
       },
       methods:{
             updateId() {
               this.userId = this.$route.params.user_id   
-            }
+            },
       },
       watch: {
             // I did in last commit when we went from one profile to another it changed this.$route parameter but unfortunately because vue js is recilying the component and it doesn't distroy it
@@ -25,7 +25,7 @@ export default {
 
             // first step is create "watch" property and it's an object to watch certain things such as variables and object and when that variable or object changed then we can called a function to react
 
-            $route: 'updateId'
+            $route: 'updateId',
       }
 }
 </script>
