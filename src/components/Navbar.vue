@@ -14,6 +14,19 @@
                         </router-link>
                   </li>
             </ul>
+            <h2>Navigation control</h2>
+            <ul>
+                  <li>
+                        <button @click="goBack">Go Back</button>
+                  </li>
+
+                  <li>
+                        <button @click="goHome">Redirect to Home</button>
+                  </li>
+                  <li>
+                        <button @click="goForward">Go Forward</button>
+                  </li>
+            </ul>
       </div>
 </template>
 
@@ -23,6 +36,21 @@ export default {
       data() {
             return {
                   userIds: ["1","3","7","99"]
+            }
+      },
+      methods: {
+            goHome() {
+                  // now we type this.$router not this.$route
+                  // the diffrence between them is
+                  // this.$route = singler refers to just the single route
+                  // this.$router = refers to the entire router history  
+                  this.$router.push({name: 'Home'})
+            },
+            goBack() {
+                  this.$router.go(-1)
+            },
+            goForward(){
+                  this.$router.go(+1)
             }
       }
 }
