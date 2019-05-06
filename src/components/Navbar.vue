@@ -67,7 +67,13 @@ li a{
       color: #41b882;
 }
 .router-link-exact-active{
+      /* this is for route active like '/about' */
       color:black;
+}
+.router-link-active{
+      /* this is for route active like '/about/us */
+      /* because about it's still inside the url */
+      color:red;
 }
 a:link {
   text-decoration: none;
