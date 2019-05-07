@@ -24,10 +24,14 @@ export default {
       },
       methods:{
            deleteSmoothie(id){
-                 this.smoothies = this.smoothies.filter(smoothie => {
-                       alert('confirm')
-                       return smoothie.id != id
-                 })
+            // delete doc from firestore
+                  db.collection('smoothies').doc(id).delete()
+                  .then(() => {
+                        // this is for deleting locally once the data has deleted from database unless nothing gonna happen
+                        this.smoothies = this.smoothies.filter(smoothie => {
+                              return smoothie.id != id
+                        })
+                  })
            }
       },
       created(){
