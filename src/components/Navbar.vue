@@ -2,11 +2,11 @@
       <div class="navbar navbar-fixed">
             <nav class="nav-extended purple darken-1">
                  <div class="nav-content">
-                        <router-link to="">
+                        <router-link :to="{ name: 'Index' }">
                               <span class="nav-title">Smoothies</span> 
                         </router-link>
                         <a href="" class="btn-large  btn-floating halfway-fab pink">
-                              <router-link to="">
+                              <router-link :to="{ name: 'AddSmoothie' }">
                                 <i class="material-icons">add</i>
                               </router-link>
                         </a>
