@@ -10,10 +10,11 @@
                   <div class="field add-ingredient" v-for="(ing, index) in ingredients" :key="index">
                         <label for="ingredient">Add an Ingredient</label>
                         <input type="text" name="ingredient" v-model="ingredients[index]">
+                        <i class="material-icons delete" @click="deleteIng(ing)">delete</i>
                   </div>
                   <div class="field add-ingredient">
-                        <label for="ingredient">Add an Ingredient</label>
-                        <input type="text" name="add-ingredient"  @keydown.enter.prevent="addIng" v-model="another">
+                        <label for="ingredient">Add an Ingredient: {{ another }}</label>
+                        <input type="text" name="another"  @keydown.enter.prevent="addIng" v-model="another">
                   </div>
                   <div class="field center-align">
                         <p v-if="feedback" class="red-text">{{ feedback }}</p>
@@ -39,8 +40,17 @@ export default {
           }
     },
     methods: {
+          addIng(){
+                if(this.another){
+                      this.ingredients.push(this.another)
+                      this.another = null
+                      this.feedback = null
+                }else{
+                      this.feedback = 'You must enter a value to add ingredients'
+                }
+          },
           AddSmoothie(){
-                if(this.title){
+                if(this.title != null && this.another != null){
                         this.feedback = null
                         // create a slug
                         this.slug = slugify(this.title, {
@@ -64,16 +74,12 @@ export default {
                     this.feedback = 'You must enter a value to add ingredients'
                 }
           },
-          addIng(){
-                if(this.another){
-                      this.ingredients.push(this.another)
-                      this.another = null
-                      this.feedback = null
-                      console.log(this.ingredients)
-                }else{
-                      this.feedback = 'You must enter a value to add ingredients'
-                }
-          },
+          
+          deleteIng(ing){
+                this.ingredients = this.ingredients.filter(ingredient => {
+                      return ingredient != ing
+                })
+          }
     } 
 }
 </script>
@@ -89,9 +95,14 @@ export default {
 }
 .add-smoothie .field{
       margin: 20px auto;
+      position: relative;
 }
+
 .add-smoothie .field .delete{
+      position: absolute;
+      right: 0;
+      bottom: 16px;
+      color: #aaa;
       cursor: pointer;
-      color: red;
 }
 </style>
