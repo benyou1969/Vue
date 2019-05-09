@@ -50,7 +50,7 @@ export default {
                 }
           },
           AddSmoothie(){
-                if(this.title != null && this.another != null){
+                if(this.title){
                         this.feedback = null
                         // create a slug
                         this.slug = slugify(this.title, {
@@ -58,23 +58,20 @@ export default {
                               remove: /[$#@!$%ˆ&*:.>?<()-]/g,
                               lower: true
                         })
-                        console.log(this.slug)
                         db.collection('smoothies').add({
                               title: this.title,
                               slug: this.slug,
                               ingredients: this.ingredients,
-                        })
-                        .then(() => {
+                        }).then(() => {
                               this.$router.push({name: 'Index'})
-                        })
-                        .catch(error => {
+                        }).catch(error => {
                               console.log(error)
                         })
+                        console.log(ingredients)
                 }else{
                     this.feedback = 'You must enter a value to add ingredients'
                 }
           },
-          
           deleteIng(ing){
                 this.ingredients = this.ingredients.filter(ingredient => {
                       return ingredient != ing
