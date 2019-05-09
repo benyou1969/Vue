@@ -67,7 +67,6 @@ export default {
                         }).catch(error => {
                               console.log(error)
                         })
-                        console.log(ingredients)
                 }else{
                     this.feedback = 'You must enter a value to add ingredients'
                 }
