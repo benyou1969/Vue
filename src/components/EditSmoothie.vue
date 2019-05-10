@@ -26,6 +26,7 @@
 
 <script>
 import db from '@/firebase/init'
+import slugify from  'slugify'
 export default {
       name: 'EditSmoothie',
       data(){
@@ -46,23 +47,43 @@ export default {
             })   
       },
       methods: {
-            EditSmoothie() {
-                  console.log(this.smoothie.title, this.smoothie.ingredients)
-            },
-            deleteIng(ing){
+          deleteIng(ing){
                 this.smoothie.ingredients = this.smoothie.ingredients.filter(ingredient => {
                       return ingredient != ing
                 })
           },
            addIng(){
                 if(this.another){
-                      this.ingredients.push(this.another)
+                      this.smoothie.ingredients.push(this.another)
                       this.another = null
                       this.feedback = null
                 }else{
                       this.feedback = 'You must enter a value to add ingredients'
                 }
           },
+          EditSmoothie() {
+                   if(this.smoothie.title){
+                        this.feedback = null
+                        // create a slug
+                        this.smoothie.slug = slugify(this.smoothie.title, {
+                              replacement: '-',
+                              remove: /[$#@!$%ˆ&*:.>?<()-]/g,
+                              lower: true
+                        })
+                        // when we want update a new records and we want to grap that records  we need refrence to it (remeber we can grap a single record in our firestore database by saying  .doc() than we pass throw id that firestore genrate it for us auto generate)
+                        db.collection('smoothies').doc(this.smoothie.id).update({
+                              title: this.smoothie.title,
+                              slug: this.smoothie.slug,
+                              ingredients: this.smoothie.ingredients,
+                        }).then(() => {
+                              this.$router.push({name: 'Index'})
+                        }).catch(error => {
+                              console.log(error)
+                        })
+                }else{
+                    this.feedback = 'You must enter a value to add ingredients'
+                }
+            },
       }
 }
 </script>
