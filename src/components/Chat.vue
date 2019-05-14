@@ -1,11 +1,11 @@
 <template>
       <div class="container chat">
-            <h2 class="center-align teal-text">Chat</h2>
+            <h2 class="center-align purple-text">Chat</h2>
             <div class="card">
                   <div class="card-content">
                         <ul class="messages left-align" v-chat-scroll>
                               <li v-for="message in messages" :key="message.id">
-                                    <span class="teal-text">{{ message.name }}</span>
+                                    <span class="purple-text">{{ message.name }}</span>
                                     <span class="grey-text md-darken-3">{{ message.content }}</span>
                                     <span class="dark-text time">{{ message.timestamp }}</span>
                               </li>
