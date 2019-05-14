@@ -3,8 +3,7 @@
             <h2 class="center-align teal-text">Chat</h2>
             <div class="card">
                   <div class="card-content">
-                        <ul class="messages">
-                              <li>
+                        <ul class="messages left-align" v-chat-scroll>
                               <li v-for="message in messages" :key="message.id">
                                     <span class="teal-text">{{ message.name }}</span>
                                     <span class="grey-text md-darken-3">{{ message.content }}</span>
@@ -23,6 +22,7 @@
 import NewMessage from '@/components/NewMessage'
 import db from "@/firebase/init"
 import moment from 'moment'
+
 export default {
       name: 'Chat',
       props: ['name'],
@@ -65,7 +65,20 @@ export default {
 }
 .chat .time {
       display: block;
-      color: #e3e3e3;
+      color: #ddd;
       font-size: .9em;
+}
+.messages{
+      max-height: 300px;
+      overflow: auto; 
+}
+.messages::-webkit-scrollbar{
+      width: 3px;
+}
+.messages::-webkit-scrollbar-track{
+      background: #ddd;
+}
+.messages::-webkit-scrollbar-thumb{
+      background: #aaa;
 }
 </style>
