@@ -5,9 +5,10 @@
                   <div class="card-content">
                         <ul class="messages">
                               <li>
-                                    <span class="teal-text">name</span>
-                                    <span class="grey-text md-darken-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus nemo tempore quibusdam dolor voluptates ipsum modi, quisquam nisi nostrum voluptatem veniam, quaerat odio incidunt delectus consequatur porro, quam repellat aliquid?</span>
-                                    <span class="dark-text time">10:20pm</span>
+                              <li v-for="message in messages" :key="message.id">
+                                    <span class="teal-text">{{ message.name }}</span>
+                                    <span class="grey-text md-darken-3">{{ message.content }}</span>
+                                    <span class="dark-text time">{{ message.timestamp }}</span>
                               </li>
                         </ul>
                   </div>
@@ -20,6 +21,8 @@
 
 <script>
 import NewMessage from '@/components/NewMessage'
+import db from "@/firebase/init"
+
 export default {
       name: 'Chat',
       props: ['name'],
@@ -28,8 +31,26 @@ export default {
       },
       data(){
             return{
-
+                  messages: []
             }
+      },
+      created(){
+            let ref = db.collection('messages')
+
+            ref.onSnapshot(snapshot => {
+                  snapshot.docChanges().forEach(change => {
+                        if (change.type == 'added'){
+                              let doc = change.doc
+                                    // console.log(change.doc.data.name)
+                              this.messages.push({
+                                    id: doc.id,
+                                    name: doc.data().name,
+                                    content: doc.data().content,
+                                    timestamp: doc.data().timestamp
+                              })
+                        }
+                  })
+            })
       }
 }
 </script>
